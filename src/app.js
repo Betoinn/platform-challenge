@@ -51,6 +51,25 @@ app.post("/tasks", (req, res) => {
   res.status(201).json(task);
 });
 
+app.patch("/tasks/:id", (req, res) => {
+  if (!/^\d+$/.test(req.params.id)) {
+    return res.status(400).json({ error: "id must be a positive integer" });
+  }
+
+  if (typeof req.body?.completed !== "boolean") {
+    return res.status(400).json({ error: "completed must be a boolean" });
+  }
+
+  const task = tasks.find((t) => t.id === Number(req.params.id));
+
+  if (!task) {
+    return res.status(404).json({ error: "task not found" });
+  }
+
+  task.completed = req.body.completed;
+  res.json(task);
+});
+
 if (require.main === module) {
   app.listen(port, () => {
     console.log(`Application listening on port ${port}`);
