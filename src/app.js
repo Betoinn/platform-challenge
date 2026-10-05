@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+app.use(express.json());
 const port = process.env.PORT || 3000;
 
 const tasks = [
@@ -34,6 +35,14 @@ app.get("/total", (_req, res) => {
 
 app.get("/tasks", (_req, res) => {
   res.json(tasks);
+});
+
+let nextId = Math.max(0, ...tasks.map((task) => task.id)) + 1;
+
+app.post("/tasks", (req, res) => {
+  const task = { id: nextId++, title: req.body?.title, completed: false };
+  tasks.push(task);
+  res.status(201).json(task);
 });
 
 if (require.main === module) {
