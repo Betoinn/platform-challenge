@@ -67,7 +67,7 @@ jobs:
       - name: Scan image for vulnerabilities
         run: |
           docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy:latest image \
+            aquasec/trivy:0.75.0 image \
             --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 \
             "$LOCAL_TAG"
 
