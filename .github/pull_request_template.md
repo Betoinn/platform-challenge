@@ -11,6 +11,7 @@ Closes #
 
 ## Checklist
 - [ ] Tests added/updated
+- [ ] CI checks pass
 - [ ] Code builds and runs locally
 - [ ] Documentation updated if needed
 - [ ] Reviewed my own diff

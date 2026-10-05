@@ -9,7 +9,10 @@ labels: bug
 
 
 ## Current behavior
-
+## Steps to reproduce
+1. 
+2. 
+3.
 
 ## Expected behavior
 
