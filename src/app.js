@@ -3,6 +3,11 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
+const tasks = [
+  { id: 1, title: "Write the README", completed: false },
+  { id: 2, title: "Fix the total calculation", completed: true }
+];
+
 function calculateTotal(items) {
   return items.reduce((total, item) => total + item.price * item.quantity, 0);
 }
@@ -27,10 +32,14 @@ app.get("/total", (_req, res) => {
   res.json({ total: calculateTotal(items) });
 });
 
+app.get("/tasks", (_req, res) => {
+  res.json(tasks);
+});
+
 if (require.main === module) {
   app.listen(port, () => {
     console.log(`Application listening on port ${port}`);
   });
 }
 
-module.exports = { app, calculateTotal };
+module.exports = { app, calculateTotal, tasks };
